@@ -2,8 +2,11 @@ name: "Trufflehog"
 description: "Analyse Repository finding exposed"
 runs:
   using: 'docker'
-  image: 'dxa4481/trufflehog'
+  image: 'Dockerfile'
 inputs:
+  githubToken:
+    description: 'GitHub Token to access a private repository.'
+    required: false
   scanArguments:
     description: 'Argument options for scan.'
     required: false
