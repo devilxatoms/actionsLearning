@@ -3,10 +3,12 @@ description: "Analyse Repository finding exposed"
 runs:
   using: 'docker'
   image: 'dxa4481/trufflehog'
+  args:
+    - ${{ inputs.command }}
 inputs:
-  scanArguments:
-    description: 'Argument options for scan.'
-    required: false
+  command:
+    description: 'trufflehog command to run'
+    required: true
 branding:
   icon: 'shield'
   color: 'yellow'

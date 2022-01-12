@@ -20,4 +20,5 @@ jobs:
       - name: trufflehog
         uses: ./.github/actions/trufflehog
         with:
-          scanArguments: "--regex --entropy=False https://github.com/dxa4481/truffleHog.git"
+          command: |
+            trufflehog --regex --entropy=False https://github.com/dxa4481/truffleHog.git
