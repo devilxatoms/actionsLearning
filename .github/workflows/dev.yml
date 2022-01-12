@@ -19,6 +19,3 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: trufflehog
         uses: ./.github/actions/trufflehog
-        with:
-          command: |
-            trufflehog --regex --entropy=False https://github.com/dxa4481/truffleHog.git
