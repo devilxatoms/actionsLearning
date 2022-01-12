@@ -21,4 +21,4 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: trufflehog-actions-scan
-        uses: edplato/trufflehog-actions-scan@master    
+        uses: ./.github/actions/trufflehog
