@@ -20,4 +20,4 @@ jobs:
       - name: trufflehog-actions-scan
         uses: edplato/trufflehog-actions-scan@master
         with:
-          scanArguments: "--regex --entropy=False https://github.com/dxa4481/truffleHog.git" 
+          scanArguments: "--regex --entropy=False --max_depth=50" 
