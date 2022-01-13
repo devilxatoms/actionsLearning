@@ -1,1 +1,2 @@
 .github/actions/trufflehog/regexes.json
+.github/actions/trufflehog/**/*
