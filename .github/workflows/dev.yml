@@ -24,4 +24,4 @@ jobs:
       - name: hadolint
         uses: ./.github/actions/hadolint
         with:
-          scanArguments: "hadolint -h"
+          scanArguments: "-h"
