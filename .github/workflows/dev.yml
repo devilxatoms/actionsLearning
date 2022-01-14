@@ -27,7 +27,7 @@ jobs:
         with:
           args: hadolint -h
       - name: list files
-      - run: echo "File list::::"
-      - run: ls
+        run: echo "File list::::"
+        run: ls
           
  
