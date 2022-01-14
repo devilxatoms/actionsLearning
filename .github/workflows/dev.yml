@@ -22,4 +22,6 @@ jobs:
         with:
           scanArguments: "--regex --entropy=False --max_depth=5 --rules /regexes.json -x /exclude-patterns.txt"
       - name: hadolint
-        uses: ./.github/actions/hadolint
+        uses: docker://hadolint/hadolint:latest
+        with:
+          args: hadolint -h
