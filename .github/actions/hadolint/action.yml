@@ -2,7 +2,7 @@ name: "Hadolint"
 description: "Analyse Dockerfiles"
 runs:
   using: 'docker'
-  image: 'hadolint/hadolint'
+  image: 'Dockerfile'
 inputs:
   scanArguments:
     description: 'Argument options for scan.'
