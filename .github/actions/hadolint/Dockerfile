@@ -1,4 +1,4 @@
-FROM hadolint/
+FROM hadolint/hadolint
 
 ADD entrypoint.sh /entrypoint.sh
 
