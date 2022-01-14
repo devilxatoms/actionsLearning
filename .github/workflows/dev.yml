@@ -25,6 +25,6 @@ jobs:
       - name: hadolint
         uses: docker://hadolint/hadolint:latest
         with:
-          args: "hadolint << ./Dockerfile"
+          args: "hadolint << Dockerfile"
           
  
