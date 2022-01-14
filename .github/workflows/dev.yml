@@ -24,4 +24,6 @@ jobs:
       - name: hadolint
         uses: docker://hadolint/hadolint:latest
         with:
-          args: hadolint -h
+          args: hadolint -
+        run: |
+          ls
