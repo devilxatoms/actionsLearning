@@ -26,6 +26,6 @@ jobs:
         uses: docker://hadolint/hadolint:latest
         run: hadolint -h
         with:
-          args: hadolint -h
+          entrypoint: hadolint -h
           
  
