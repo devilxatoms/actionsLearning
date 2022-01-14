@@ -26,9 +26,6 @@ jobs:
         uses: docker://hadolint/hadolint:latest
         with:
           args: hadolint -h
-      - run: ls
-      - name: list files
-        run: echo "File list::::"
-      - run: ls
+      - run: hadolint -h
           
  
