@@ -22,7 +22,9 @@ jobs:
         uses: ./.github/actions/trufflehog
         with:
           scanArguments: "--regex --entropy=False --max_depth=5 --rules /regexes.json -x /exclude-patterns.txt"
-      - uses: hadolint/hadolint-action@v1.6.0
+      - name: hadolint
+        uses: ./.github/actions/hadolint
         with:
-          dockerfile: Dockerfile
+          args: "hadolint -h"
+          
  

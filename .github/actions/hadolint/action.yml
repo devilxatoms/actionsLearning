@@ -1,12 +1,24 @@
 name: "Hadolint"
-description: "Analyse Dockerfiles"
+description: 'Action that runs Hadolint Dockerfile linting tool'
+author: 'Brayan Caldera'
 runs:
   using: 'docker'
-  image: 'hadolint/hadolint'
+  image: 'Dockerfile'
 inputs:
-  scanArguments:
-    description: 'Argument options for scan.'
+  dockerfile:
     required: false
+    description: 'The path to the Dockerfile to lint'
+    default: 'Dockerfile'
+  recursive:
+    required: false
+    description: 'Search for specified dockerfile recursively, from the project root'
+    default: 'false'
+  format:
+    required: false
+    description: |
+      The output format, one of [tty (default) | json | checkstyle |
+      codeclimate | gitlab_codeclimate ]
+    default: 'tty'
 branding:
   icon: 'shield'
   color: 'yellow'
