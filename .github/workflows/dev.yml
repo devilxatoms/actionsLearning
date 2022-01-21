@@ -25,5 +25,3 @@ jobs:
       - uses: ./.github/actions/hadolint
         with:
           recursive: true
-          
- 
