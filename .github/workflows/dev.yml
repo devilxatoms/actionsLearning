@@ -21,15 +21,13 @@ jobs:
       - name: Build an image from Dockerfile
         run: |
           docker build -t myimage .
-      - name: Run Trivy vulnerability scanner in repo mode
-              uses: myimage
-              with:
-                scan-type: 'fs'
-                ignore-unfixed: true
-                format: 'template'
-                template: '@/contrib/sarif.tpl'
-                output: 'trivy-results.sarif'
-                severity: 'CRITICAL'
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'myimage'
+          format: 'template'
+          template: '@/contrib/sarif.tpl'
+          output: 'trivy-results.sarif'
       - name: trufflehog
         uses: ./.github/actions/trufflehog
         with:
