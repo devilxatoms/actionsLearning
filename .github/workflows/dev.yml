@@ -18,6 +18,9 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Build an image from Dockerfile
+        run: |
+          docker build -t myimage .
       - name: trufflehog
         uses: ./.github/actions/trufflehog
         with:
@@ -25,3 +28,4 @@ jobs:
       - uses: ./.github/actions/hadolint
         with:
           recursive: true
+        
