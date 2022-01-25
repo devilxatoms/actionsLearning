@@ -18,6 +18,11 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Clone supercharge docs repository
+        uses: actions/checkout@v2
+        with:
+          repository: buildpacks/samples
+          path: samples/apps/java-maven
       - name: Build image
         uses: mamezou-tech/buildpacks-action@master
         with:
