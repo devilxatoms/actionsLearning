@@ -32,6 +32,14 @@ jobs:
           path: 'samples/apps/java-maven/'
           builder: 'cnbs/sample-builder:alpine'
 
+      - name: Run Trivy vulnerability scanner for buildpack
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'sample-java-maven-app'
+          format: 'template'
+          template: '@/contrib/sarif.tpl'
+          output: 'trivy-results.sarif'
+
       - name: Build an image from Dockerfile
         run: |
           docker build -t myimage .
