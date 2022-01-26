@@ -39,9 +39,30 @@ jobs:
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results.sarif'
-          
+
+      # - name: Build an image from Dockerfile
+      #   run: |
+      #     docker build -t myimage .
+
+      # - name: Run Trivy vulnerability scanner
+      #   uses: aquasecurity/trivy-action@master
+      #   with:
+      #     image-ref: 'myimage'
+      #     format: 'template'
+      #     template: '@/contrib/sarif.tpl'
+      #     output: 'trivy-results.sarif'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: 'trivy-results.sarif'
+
       - name: trufflehog
         uses: ./.github/actions/trufflehog
         with:
           scanArguments: "--regex --entropy=False --max_depth=5 --rules /regexes.json -x /exclude-patterns.txt"
+
+      # - uses: ./.github/actions/hadolint
+      #   with:
+      #     recursive: true
         
