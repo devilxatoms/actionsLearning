@@ -25,16 +25,12 @@ jobs:
           repository: buildpacks/samples
           path: samples/apps/java-maven
 
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-
       - name: Build image
         uses: mamezou-tech/buildpacks-action@master
         with:
           image: 'foo-app'
           tag: '1.0.0'
-          path: '.'
+          path: 'samples/apps/java-maven'
           builder: 'gcr.io/paketo-buildpacks/builder:base'
           env: 'HELLO=WORLD FOO=BAR BAZ'
 
