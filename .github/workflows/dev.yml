@@ -61,7 +61,6 @@ jobs:
         uses: ./.github/actions/trufflehog
         with:
           scanArguments: "--regex --entropy=False --max_depth=5 --rules /regexes.json -x /exclude-patterns.txt"
-
       # - uses: ./.github/actions/hadolint
       #   with:
       #     recursive: true
