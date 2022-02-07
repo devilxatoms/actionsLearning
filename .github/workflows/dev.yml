@@ -66,6 +66,8 @@ jobs:
         uses: snyk/actions/docker@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          image: sample-java-maven-app
       # - uses: ./.github/actions/hadolint
       #   with:
       #     recursive: true
