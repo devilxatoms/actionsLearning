@@ -83,8 +83,8 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Run the Maven verify phase
-        run: mvn --batch-mode --update-snapshots verify
+      - name: Compile Maven
+        run: mvn compile
 
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/maven@master
