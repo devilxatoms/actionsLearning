@@ -71,9 +71,9 @@ jobs:
       #   with:
       #     recursive: true
 
-      - uses: snyk/actions/maven@master
       - name: Run Snyk to check for vulnerabilities
         working-directory: ./javaApp
+        uses: snyk/actions/maven@master
         continue-on-error: true # To make sure that SARIF upload gets called
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
