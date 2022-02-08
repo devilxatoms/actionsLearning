@@ -18,7 +18,6 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-
       - name: Clone supercharge docs repository
         uses: actions/checkout@v2
         with:
@@ -28,17 +27,17 @@ jobs:
       - name: Build image
         uses: mamezou-tech/buildpacks-action@master
         with:
-          image: 'sample-java-maven-app'
-          path: 'samples/apps/java-maven/'
-          builder: 'cnbs/sample-builder:alpine'
+          image: "sample-java-maven-app"
+          path: "samples/apps/java-maven/"
+          builder: "cnbs/sample-builder:alpine"
 
       - name: Run Trivy vulnerability scanner for buildpack
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'sample-java-maven-app'
-          format: 'template'
-          template: '@/contrib/sarif.tpl'
-          output: 'trivy-results.sarif'
+          image-ref: "sample-java-maven-app"
+          format: "template"
+          template: "@/contrib/sarif.tpl"
+          output: "trivy-results.sarif"
 
       # - name: Build an image from Dockerfile
       #   run: |
@@ -61,7 +60,7 @@ jobs:
         uses: ./.github/actions/trufflehog
         with:
           scanArguments: "--regex --entropy=False --max_depth=5 --rules /regexes.json -x /exclude-patterns.txt"
-      
+
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/docker@master
         env:
@@ -73,11 +72,10 @@ jobs:
       #     recursive: true
 
       - name: Run Snyk to check for vulnerabilities
+        working-directory: ./javaApp
         uses: snyk/actions/maven@master
         continue-on-error: true # To make sure that SARIF upload gets called
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args: --sarif-file-output=snyk.sarif
-        working-directory: ./javaApp
-        
