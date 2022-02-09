@@ -77,8 +77,11 @@ jobs:
       run:
         working-directory: ./javaApp
     steps:
-      - name: Check out repository code
+      - name: Clone mvn-app
         uses: actions/checkout@v2
+        with:
+          repository: jitpack/maven-simple
+          path: ./javaApp
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - run: ls -la
       - uses: actions/setup-java@v2
