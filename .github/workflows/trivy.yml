@@ -1,0 +1,25 @@
+name: GitHub Actions Demo
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push:
+    branches:
+      - main
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Clone supercharge docs repository
+        uses: actions/checkout@v2
+        with:
+          repository: buildpacks/samples
+          path: samples/apps/java-maven
+
+      - name: Build image
+        uses: mamezou-tech/buildpacks-action@master
+        with:
+          image: "sample-java-maven-app"
+          path: "samples/apps/java-maven/"
+          builder: "cnbs/sample-builder:alpine"
