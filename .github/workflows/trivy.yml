@@ -23,3 +23,11 @@ jobs:
           image: "sample-java-maven-app"
           path: "samples/apps/java-maven/"
           builder: "cnbs/sample-builder:alpine"
+
+      - name: Run Trivy vulnerability scanner for buildpack
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: "sample-java-maven-app"
+          format: "template"
+          template: "@/contrib/sarif.tpl"
+          output: "trivy-results.sarif"
