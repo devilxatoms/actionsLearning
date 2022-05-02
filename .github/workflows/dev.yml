@@ -24,72 +24,78 @@ jobs:
           repository: buildpacks/samples
           path: samples/apps/java-maven
 
-      - name: Build image
-        uses: mamezou-tech/buildpacks-action@master
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.7
         with:
-          image: "sample-java-maven-app"
-          path: "samples/apps/java-maven/"
-          builder: "cnbs/sample-builder:alpine"
+          versionSpec: '5.x'
 
-      - name: Run Trivy vulnerability scanner for buildpack
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: "sample-java-maven-app"
-          format: "template"
-          template: "@/contrib/sarif.tpl"
-          output: "trivy-results.sarif"
 
-      # - name: Build an image from Dockerfile
-      #   run: |
-      #     docker build -t myimage .
+  #     - name: Build image
+  #       uses: mamezou-tech/buildpacks-action@master
+  #       with:
+  #         image: "sample-java-maven-app"
+  #         path: "samples/apps/java-maven/"
+  #         builder: "cnbs/sample-builder:alpine"
 
-      # - name: Run Trivy vulnerability scanner
-      #   uses: aquasecurity/trivy-action@master
-      #   with:
-      #     image-ref: 'myimage'
-      #     format: 'template'
-      #     template: '@/contrib/sarif.tpl'
-      #     output: 'trivy-results.sarif'
+  #     - name: Run Trivy vulnerability scanner for buildpack
+  #       uses: aquasecurity/trivy-action@master
+  #       with:
+  #         image-ref: "sample-java-maven-app"
+  #         format: "template"
+  #         template: "@/contrib/sarif.tpl"
+  #         output: "trivy-results.sarif"
 
-      # - name: Upload Trivy scan results to GitHub Security tab
-      #   uses: github/codeql-action/upload-sarif@v1
-      #   with:
-      #     sarif_file: 'trivy-results.sarif'
+  #     # - name: Build an image from Dockerfile
+  #     #   run: |
+  #     #     docker build -t myimage .
 
-      - name: trufflehog
-        uses: ./.github/actions/trufflehog
-        with:
-          scanArguments: "--regex --entropy=False --max_depth=5 --rules /regexes.json -x /exclude-patterns.txt"
+  #     # - name: Run Trivy vulnerability scanner
+  #     #   uses: aquasecurity/trivy-action@master
+  #     #   with:
+  #     #     image-ref: 'myimage'
+  #     #     format: 'template'
+  #     #     template: '@/contrib/sarif.tpl'
+  #     #     output: 'trivy-results.sarif'
 
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/docker@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          image: sample-java-maven-app
-      # - uses: ./.github/actions/hadolint
-      #   with:
-      #     recursive: true
+  #     # - name: Upload Trivy scan results to GitHub Security tab
+  #     #   uses: github/codeql-action/upload-sarif@v1
+  #     #   with:
+  #     #     sarif_file: 'trivy-results.sarif'
 
-  test-mvn:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clone mvn-app
-        uses: actions/checkout@v2
-        with:
-          repository: jitpack/maven-simple
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - run: ls -la
-      - uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-      - name: Validate Maven
-        run: mvn validate
-      - name: Compile Maven
-        run: mvn compile
+  #     - name: trufflehog
+  #       uses: ./.github/actions/trufflehog
+  #       with:
+  #         scanArguments: "--regex --entropy=False --max_depth=5 --rules /regexes.json -x /exclude-patterns.txt"
 
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/maven@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  #     - name: Run Snyk to check for vulnerabilities
+  #       uses: snyk/actions/docker@master
+  #       env:
+  #         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  #       with:
+  #         image: sample-java-maven-app
+  #     # - uses: ./.github/actions/hadolint
+  #     #   with:
+  #     #     recursive: true
+
+  # test-mvn:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Clone mvn-app
+  #       uses: actions/checkout@v2
+  #       with:
+  #         repository: jitpack/maven-simple
+  #     - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+  #     - run: ls -la
+  #     - uses: actions/setup-java@v2
+  #       with:
+  #         java-version: '11'
+  #         distribution: 'adopt'
+  #     - name: Validate Maven
+  #       run: mvn validate
+  #     - name: Compile Maven
+  #       run: mvn compile
+
+  #     - name: Run Snyk to check for vulnerabilities
+  #       uses: snyk/actions/maven@master
+  #       env:
+  #         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
