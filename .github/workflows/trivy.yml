@@ -11,35 +11,40 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - name: Clone supercharge docs repository
-        uses: actions/checkout@v2
         with:
-          repository: buildpacks/samples
-          path: samples/apps/java-maven
+          fetch-depth: 0
+      # - name: Clone supercharge docs repository
+      #   uses: actions/checkout@v2
+      #   with:
+      #     repository: buildpacks/samples
+      #     path: samples/apps/java-maven
 
-      - name: Build image
-        uses: mamezou-tech/buildpacks-action@master
-        with:
-          image: "sample-java-maven-app"
-          path: "samples/apps/java-maven/"
-          builder: "cnbs/sample-builder:alpine"
+      # - name: Build image
+      #   uses: mamezou-tech/buildpacks-action@master
+      #   with:
+      #     image: "sample-java-maven-app"
+      #     path: "samples/apps/java-maven/"
+      #     builder: "cnbs/sample-builder:alpine"
 
-      - name: Run Trivy vulnerability scanner for buildpack
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: "sample-java-maven-app"
-          format: "template"
-          template: "@/contrib/sarif.tpl"
-          output: "trivy-results.sarif"
+      # - name: Run Trivy vulnerability scanner for buildpack
+      #   uses: aquasecurity/trivy-action@master
+      #   with:
+      #     image-ref: "sample-java-maven-app"
+      #     format: "template"
+      #     template: "@/contrib/sarif.tpl"
+      #     output: "trivy-results.sarif"
  
           
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          sarif_file: 'trivy-results.sarif'
+      # - name: Upload Trivy scan results to GitHub Security tab
+      #   uses: github/codeql-action/upload-sarif@v1
+      #   with:
+      #     sarif_file: 'trivy-results.sarif'
 
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.9.7
         with:
           versionSpec: '6.x'
           includePrerelease: true
+
+      - name: Determine Version
+        uses: gittools/actions/gitversion/execute@v0.9.7
