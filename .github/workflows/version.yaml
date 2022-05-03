@@ -6,10 +6,12 @@ on:
     branches:
       - main
       - dev
-      - releases
-      - feature/*
-      - bugfix/*
-      - fix/*
+      - 'releases/**'
+      - 'feature/**'
+      - 'bugfix/**'
+      - 'fix/**'
+      - 'release/**'
+
       
 jobs:
   Explore-GitHub-Actions:
