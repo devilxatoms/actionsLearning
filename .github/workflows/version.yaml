@@ -1,12 +1,9 @@
 name: GitHub Actions Demo
 on:
-  # Trigger the workflow on push or pull request,
-  # but only for the main branch
   push:
     branches:
       - main
       - dev
-      - 'releases/**'
       - 'feature/**'
       - 'bugfix/**'
       - 'fix/**'
@@ -26,7 +23,6 @@ jobs:
         uses: gittools/actions/gitversion/setup@v0.9.7
         with:
           versionSpec: '5.x'
-          includePrerelease: true
 
       - name: Determine Version
         uses: gittools/actions/gitversion/execute@v0.9.7
