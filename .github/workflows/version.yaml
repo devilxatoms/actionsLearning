@@ -11,7 +11,7 @@ on:
       - 'bugfix/**'
       - 'fix/**'
       - 'release/**'
-      
+
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
