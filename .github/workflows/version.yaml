@@ -32,3 +32,5 @@ jobs:
       - name: Display SemVer
         run: |
           echo "SemVer: $GITVERSION_SEMVER"
+          echo "BranchName: $GITVERSION_BRANCHNANME"
+          echo "CommitDate: $GITVERSION_COMMITDATE"
